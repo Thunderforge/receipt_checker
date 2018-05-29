@@ -16,6 +16,25 @@ public class AppleReceiptValidatorTest {
 		validator = new AppleReceiptValidator(true, "foo");
 	}
 
+	/*******************************************************************************
+	 * Adapted from com.badlogicgames.gdxpay: gdx-pay-server Copyright 2011
+	 * 
+	 * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+	 * use this file except in compliance with the License. You may obtain a copy of
+	 * the License at
+	 * 
+	 * http://www.apache.org/licenses/LICENSE-2.0
+	 * 
+	 * Unless required by applicable law or agreed to in writing, software
+	 * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+	 * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+	 * License for the specific language governing permissions and limitations under
+	 * the License.
+	 * 
+	 * AUTHORS Noble Master Games just4phil (Heavily Loaded Games) Kees van Dieren
+	 * (Squins IT Solutions) Migeran
+	 * 
+	 ******************************************************************************/
 	@Test
 	public void testIsValid() {
 		/** our sample receipt for the sandbox (returns error 21004) */
@@ -26,7 +45,10 @@ public class AppleReceiptValidatorTest {
 		assertTrue(!validator.isValid(receipt, null));
 	}
 
-	/** This test returns a status 21002 because AppleReceipt formats the JSON properly */
+	/**
+	 * This test returns a status 21002 because AppleReceipt formats the JSON
+	 * properly using Jackson
+	 */
 	@Test
 	public void testIsValidBadFormat() {
 		String receipt = "";
@@ -40,7 +62,7 @@ public class AppleReceiptValidatorTest {
 	}
 
 	@Test
-	public void testIsValid2() {
+	public void testIsValidMalformedJson2() {
 		/** our sample receipt for the sandbox (returns error 21004) */
 		String receipt = "{ test test }";
 		assertTrue(!validator.isValid(receipt, null));
