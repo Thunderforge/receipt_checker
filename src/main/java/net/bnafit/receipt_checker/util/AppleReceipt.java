@@ -25,7 +25,7 @@ public class AppleReceipt {
 		mapper.registerModule(new Jdk8Module());
 		mapper.registerModule(new JavaTimeModule());
 		mapper.setSerializationInclusion(Include.NON_NULL);
-		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
 		return mapper;
 	}
 
