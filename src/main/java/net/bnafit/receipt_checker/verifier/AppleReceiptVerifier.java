@@ -37,11 +37,10 @@ public class AppleReceiptVerifier {
 
 	public boolean isValid(PaymentTransaction transaction) {
 		// the transaction data is our original == receipt!
-		String receipt = transaction.getTransactionData();
-
-		// encode the data
+		String receipt = transaction.getTransactionDataSignature();
 		final String receiptData = Base64Util.toBase64(receipt.getBytes());
 		final String jsonData = "{\"receipt-data\" : \"" + receiptData + "\"}";
+		
 		try {
 			// send the data to Apple
 			final URL url = new URL(sandbox ? SANDBOX_URL : PRODUCTION_URL);
@@ -51,6 +50,7 @@ public class AppleReceiptVerifier {
 			conn.setRequestProperty("Content-Type", "application/json");
 			conn.setRequestProperty("Accept", "application/json");
 			final OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+			System.out.println(jsonData);
 			wr.write(jsonData);
 			wr.flush();
 
