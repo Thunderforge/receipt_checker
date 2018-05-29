@@ -17,7 +17,9 @@ public class AppleReceiptValidatorTest {
 	}
 
 	/*******************************************************************************
-	 * Adapted from com.badlogicgames.gdxpay: gdx-pay-server Copyright 2011
+	 * Adapted from com.badlogicgames.gdxpay: gdx-pay-server by kdbeall
+	 * 
+	 * Copyright 2011
 	 * 
 	 * Licensed under the Apache License, Version 2.0 (the "License"); you may not
 	 * use this file except in compliance with the License. You may obtain a copy of
@@ -31,8 +33,8 @@ public class AppleReceiptValidatorTest {
 	 * License for the specific language governing permissions and limitations under
 	 * the License.
 	 * 
-	 * AUTHORS Noble Master Games just4phil (Heavily Loaded Games) Kees van Dieren
-	 * (Squins IT Solutions) Migeran
+	 * AUTHORS Noble Master Games, just4phil (Heavily Loaded Games), Kees van Dieren
+	 * (Squins IT Solutions), Migeran
 	 * 
 	 ******************************************************************************/
 	@Test

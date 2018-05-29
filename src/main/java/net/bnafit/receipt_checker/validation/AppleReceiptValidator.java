@@ -14,26 +14,24 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import net.bnafit.receipt_checker.util.AppleReceipt;
 
 /*******************************************************************************
- * Adapted from com.badlogicgames.gdxpay: gdx-pay-server
+ * Adapted from com.badlogicgames.gdxpay: gdx-pay-server by kdbeall
+ * 
  * Copyright 2011
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
  * 
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
- *   http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  * 
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  * 
- * AUTHORS
- * Noble Master Games
- * just4phil (Heavily Loaded Games)
- * Kees van Dieren (Squins IT Solutions)
- * Migeran
+ * AUTHORS Noble Master Games, just4phil (Heavily Loaded Games), Kees van Dieren
+ * (Squins IT Solutions), Migeran
  * 
  ******************************************************************************/
 
@@ -63,8 +61,10 @@ public class AppleReceiptValidator {
 
 	/**
 	 * 
-	 * @param sandbox If true, SANDBOX, else production.
-	 * @param secret Your 
+	 * @param sandbox
+	 *            If true, SANDBOX, else production.
+	 * @param secret
+	 *            Your
 	 */
 	public AppleReceiptValidator(Boolean sandbox, String password) {
 		this.sandbox = sandbox;
@@ -73,8 +73,12 @@ public class AppleReceiptValidator {
 
 	/**
 	 * Checks if a receipt is valid or not.
-	 * @param receiptData The text of the receipt (not base64 encoded).
-	 * @param excludeOldTransactions Only used for iOS7 style app receipts that contain auto-renewable or non-renewing subscriptions; set to null otherwise.
+	 * 
+	 * @param receiptData
+	 *            The text of the receipt (not base64 encoded).
+	 * @param excludeOldTransactions
+	 *            Only used for iOS7 style app receipts that contain auto-renewable
+	 *            or non-renewing subscriptions; set to null otherwise.
 	 * @return If the receipt is valid.
 	 */
 	public boolean isValid(String receiptData, Boolean excludeOldTransactions) {
