@@ -3,7 +3,6 @@ package net.bnafit.receipt_checker.util;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class AppleReceipt {
@@ -30,7 +29,11 @@ public class AppleReceipt {
 		this.excludeOldTransactions = excludeOldTransactions;
 	}
 
-	public JsonNode toJson() {
-		return mapper.valueToTree(this);
+	public String toJsonString() {
+		try {
+			return mapper.writeValueAsString(mapper.valueToTree(this));
+		} catch (Exception e) {
+			return null;
+		}
 	}
 }

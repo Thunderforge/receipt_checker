@@ -90,7 +90,10 @@ public class AppleReceiptValidator {
 	 */
 	public boolean isValid(String receiptData, Boolean excludeOldTransactions) {
 		final AppleReceipt receipt = new AppleReceipt(receiptData, password, excludeOldTransactions);
-		final String jsonData = receipt.toJson().toString();
+		final String requestJson = receipt.toJsonString();
+		if(requestJson == null) {
+			return false;
+		}
 		try {
 			final URL url = new URL(sandbox ? SANDBOX_URL : PRODUCTION_URL);
 			final HttpURLConnection conn = (HttpsURLConnection) url.openConnection();
@@ -99,7 +102,7 @@ public class AppleReceiptValidator {
 			conn.setRequestProperty("Content-Type", "application/json");
 			conn.setRequestProperty("Accept", "application/json");
 			final OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
-			wr.write(jsonData);
+			wr.write(requestJson);
 			wr.flush();
 
 			/** obtain the response */
@@ -112,8 +115,8 @@ public class AppleReceiptValidator {
 			wr.close();
 			rd.close();
 			String response = builder.toString();
-			JsonNode actualObj = mapper.readTree(response);
-			int status = actualObj.get("status").asInt();
+			JsonNode responseJson = mapper.readTree(response);
+			int status = responseJson.get("status").asInt();
 
 			/** verify the response: something like {"status":21004} etc... */
 			return mapStatus(status);
