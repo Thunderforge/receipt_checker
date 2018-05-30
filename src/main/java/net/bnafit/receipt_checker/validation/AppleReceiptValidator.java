@@ -8,6 +8,9 @@ import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -48,6 +51,9 @@ public class AppleReceiptValidator {
 
 	/** Maps Strings to JSON */
 	private static final ObjectMapper mapper = new ObjectMapper();
+
+	/** Slf4j Logger */
+	final Logger logger = LoggerFactory.getLogger(AppleReceiptValidator.class);
 
 	/** True for sandbox mode. */
 	private Boolean sandbox;
@@ -91,7 +97,7 @@ public class AppleReceiptValidator {
 	public boolean isValid(String receiptData, Boolean excludeOldTransactions) {
 		final AppleReceipt receipt = new AppleReceipt(receiptData, password, excludeOldTransactions);
 		final String requestJson = receipt.toJsonString();
-		if(requestJson == null) {
+		if (requestJson == null) {
 			return false;
 		}
 		try {
@@ -161,8 +167,7 @@ public class AppleReceiptValidator {
 			message = "Unknown error: status code = " + status;
 		}
 		if (logging) {
-			/** TODO slf4j */
-			System.out.println(message);
+			logger.info(message);
 		}
 		return false;
 	}
