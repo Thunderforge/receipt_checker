@@ -91,7 +91,6 @@ public class AppleReceiptValidator {
 	public boolean isValid(String receiptData, Boolean excludeOldTransactions) {
 		final AppleReceipt receipt = new AppleReceipt(receiptData, password, excludeOldTransactions);
 		final String jsonData = receipt.toJson().toString();
-		System.out.println(jsonData);
 		try {
 			final URL url = new URL(sandbox ? SANDBOX_URL : PRODUCTION_URL);
 			final HttpURLConnection conn = (HttpsURLConnection) url.openConnection();

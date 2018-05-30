@@ -5,8 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 public class AppleReceipt {
 
@@ -21,9 +19,6 @@ public class AppleReceipt {
 
 	public static ObjectMapper makeMapper() {
 		ObjectMapper mapper = new ObjectMapper();
-		/** Nice to have... https://github.com/FasterXML/jackson-modules-java8 */
-		mapper.registerModule(new Jdk8Module());
-		mapper.registerModule(new JavaTimeModule());
 		mapper.setSerializationInclusion(Include.NON_NULL);
 		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
 		return mapper;
