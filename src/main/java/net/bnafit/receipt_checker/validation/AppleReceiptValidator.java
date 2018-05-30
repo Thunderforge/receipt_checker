@@ -16,10 +16,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import net.bnafit.receipt_checker.util.AppleReceipt;
 
-/*******************************************************************************
+/*
  * Adapted from com.badlogicgames.gdxpay: gdx-pay-server by kdbeall
  * 
- * Copyright 2011
+ * Copyright 2011 AUTHORS
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -36,8 +36,14 @@ import net.bnafit.receipt_checker.util.AppleReceipt;
  * AUTHORS Noble Master Games, just4phil (Heavily Loaded Games), Kees van Dieren
  * (Squins IT Solutions), Migeran
  * 
- ******************************************************************************/
+ */
 
+/**
+ * Validates Apple IAP receipts with the App Store.
+ * 
+ * @author kdbeall
+ *
+ */
 public class AppleReceiptValidator {
 
 	/** Initial capacity of the StringBuilder */
@@ -75,7 +81,7 @@ public class AppleReceiptValidator {
 	 *
 	 * @param sandbox
 	 *            If true, SANDBOX, else production.
-	 * @param secret
+	 * @param password
 	 *            Your application specific secret
 	 * @param logging
 	 *            If true, logs upon errors.
@@ -135,6 +141,13 @@ public class AppleReceiptValidator {
 		}
 	}
 
+	/**
+	 * Maps a status returned from Apple to success or failure. Logs an error using
+	 * slf4j if logging is enabled.
+	 * 
+	 * @param status
+	 * @return Whether the status is successful or not.
+	 */
 	private boolean mapStatus(int status) {
 		String message = status + ": ";
 		switch (status) {
