@@ -9,7 +9,30 @@
 	<packaging>jar</packaging>
 
 	<name>receipt_checker</name>
-	<url>http://maven.apache.org</url>
+	<description> A library for validating Apple IAP receipts. </description>
+	<url>https://github.com/kdbeall/receipt_checker</url>
+
+	<licenses>
+		<license>
+			<name>The Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Daniel Beall</name>
+			<email>daniel@bnafit.app</email>
+			<organization>Bnafit, INC</organization>
+			<organizationUrl>http://www.bnafit.net</organizationUrl>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:git://github.com/kdbeall/receipt_checker.git</connection>
+		<developerConnection>scm:git:ssh://github.com:kdbeall/receipt_checker.git</developerConnection>
+		<url>https://github.com/kdbeall/receipt_checker/tree/master</url>
+	</scm>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
