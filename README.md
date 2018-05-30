@@ -9,7 +9,7 @@ Intended to be simple to modify and use.
 public class FooApplePaymentController {
 
   /** Use sandbox, no password, and logging */ 
-  private static final AppleReceiptValidator validator = = new AppleReceiptValidator(true, null, true);
+  private static final AppleReceiptValidator validator = new AppleReceiptValidator(true, null, true);
   
   public FooApplePaymentController(){
   }
