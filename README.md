@@ -27,7 +27,7 @@ public class FooApplePaymentController {
 ```
 
 ### Dependencies
-- [Jackson](https://github.com/FasterXML/jackson}
+- [Jackson](https://github.com/FasterXML/jackson)
 - [SLF4J](https://www.slf4j.org/)
 
 ### Installation Steps
