@@ -8,11 +8,10 @@ Intended to be simple to modify and use.
 /** Your end use might look something like this */
 public class FooApplePaymentController {
 
-  private static final AppleReceiptValidator validator;
+  /** Use sandbox, no password, and logging */ 
+  private static final AppleReceiptValidator validator = = new AppleReceiptValidator(true, null, true);
   
   public FooApplePaymentController(){
-    /** Use sandbox and no password */ 
-    AppleReceiptValidator validator = new AppleReceiptValidator(true, null);
   }
   /** Receiving a subscription update from Apple */ 
   public void receiveUpdate(){
