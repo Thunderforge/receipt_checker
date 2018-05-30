@@ -72,11 +72,13 @@ public class AppleReceiptValidator {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param sandbox
 	 *            If true, SANDBOX, else production.
 	 * @param secret
-	 *            Your
+	 *            Your application specific secret
+	 * @param logging
+	 *            If true, logs upon errors.
 	 */
 	public AppleReceiptValidator(Boolean sandbox, String password, boolean logging) {
 		this.sandbox = sandbox;
