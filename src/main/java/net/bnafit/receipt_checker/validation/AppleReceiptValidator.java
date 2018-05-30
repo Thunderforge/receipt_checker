@@ -55,8 +55,14 @@ public class AppleReceiptValidator {
 	/** Your app's shared secret */
 	private String password;
 
+	private boolean logging;
+
 	public AppleReceiptValidator() {
-		this(false, null);
+		this(false, null, true);
+	}
+
+	public AppleReceiptValidator(Boolean sandbox) {
+		this(sandbox, null, true);
 	}
 
 	/**
@@ -66,9 +72,10 @@ public class AppleReceiptValidator {
 	 * @param secret
 	 *            Your
 	 */
-	public AppleReceiptValidator(Boolean sandbox, String password) {
+	public AppleReceiptValidator(Boolean sandbox, String password, boolean logging) {
 		this.sandbox = sandbox;
 		this.password = password;
+		this.logging = logging;
 	}
 
 	/**
@@ -106,7 +113,6 @@ public class AppleReceiptValidator {
 			wr.close();
 			rd.close();
 			String response = builder.toString();
-			System.out.println(builder.toString());
 			JsonNode actualObj = mapper.readTree(response);
 			int status = actualObj.get("status").asInt();
 
@@ -114,44 +120,48 @@ public class AppleReceiptValidator {
 			return mapStatus(status);
 
 		} catch (Exception e) {
-			/** I/O-error: let's assume bad news... */
 			e.printStackTrace();
 			return false;
 		}
 	}
 
 	private boolean mapStatus(int status) {
+		String message = status + ": ";
 		switch (status) {
 		case 0:
 			return true;
 		case 21000:
-			System.out.println(status + ": App store could not read");
-			return false;
+			message += "App store could not read";
+			break;
 		case 21002:
-			System.out.println(status + ": Data was malformed");
-			return false;
+			message += "Data was malformed";
+			break;
 		case 21003:
-			System.out.println(status + ": Receipt not authenticated");
-			return false;
+			message += "Receipt not authenticated";
+			break;
 		case 21004:
-			System.out.println(status + ": Shared secret does not match");
-			return false;
+			message += "Shared secret does not match";
+			break;
 		case 21005:
-			System.out.println(status + ": Receipt server unavailable");
-			return false;
+			message += "Receipt server unavailable";
+			break;
 		case 21006:
-			System.out.println(status + ": Receipt valid but sub expired");
-			return false;
+			message += "Receipt valid but sub expired";
+			break;
 		case 21007:
-			System.out.println(status + ": Sandbox receipt sent to Production environment");
-			return false;
+			message += "Sandbox receipt sent to Production environment";
+			break;
 		case 21008:
-			System.out.println(status + ": Production receipt sent to Sandbox environment");
-			return false;
+			message += "Production receipt sent to Sandbox environment";
+			break;
 		default:
 			/** unknown error code (nevertheless a problem) */
-			System.out.println("Unknown error: status code = " + status);
-			return false;
+			message = "Unknown error: status code = " + status;
 		}
+		if (logging) {
+			/** TODO slf4j */
+			System.out.println(message);
+		}
+		return false;
 	}
 }

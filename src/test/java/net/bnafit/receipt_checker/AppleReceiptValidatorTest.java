@@ -13,7 +13,7 @@ public class AppleReceiptValidatorTest {
 
 	@Before
 	public void setup() {
-		validator = new AppleReceiptValidator(true, "foo");
+		validator = new AppleReceiptValidator(true, "foo", true);
 	}
 
 	/*******************************************************************************
